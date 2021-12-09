@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Browser Security Camera</title>
+  </head>
+  <body>
+    <div class="camera">
+      <video id="player" width=320 height=240 controls autoplay></video>
+      <canvas id="canvas" width=320 height=240></canvas>
+      <div id="alarm"></div>
+      <div class="sliderContainer">
+        <label for="sensitivity" class="form-label">Sensitivity</label>
+        <input type="range" class="slider" id="sensitivity"></input>
+      </div>
+      <div class="checkboxContainer">
+        <input type="checkbox" class="checkbox" id="captureImages"></input>
+        <label for="captureImages">Capture images</label>
+      </div>
+      <div class="checkboxContainer">
+        <input type="checkbox" class="checkbox" id="captureVideos"></input>
+        <label for="captureVideos" class="form-label">Capture video clips</label>
+      </div>
+    </div>
+    <script src="static/script.js"></script>
+  </body>
+</html>
