@@ -51,11 +51,14 @@ var  slider = document.getElementById('sensitivity');
 slider.max = 100;
 slider.min = 0;
 slider.value = 50;
-pixelThreshold = Math.abs(slider.value - 100) * 0.5 + 20;
-globalThreshold = Math.abs(slider.value - 100) * 10;
+function thresholds(value) {
+  let pixelThreshold = Math.abs(value - 100) * 0.5 + 20;
+  let globalThreshold = Math.abs(value - 100) * 10;
+  return [pixelThreshold, globalThreshold];
+}
+var [pixelThreshold, globalThreshold] = thresholds(slider.value);
 slider.oninput = function() {
-  pixelThreshold = Math.abs(this.value - 100) * 0.5 + 20;
-  globalThreshold = Math.abs(this.value - 100) * 10;
+  [pixelThreshold, globalThreshold] = thresholds(this.value)
 }
 var captureImages = document.getElementById('captureImages');
 var captureVideos = document.getElementById('captureVideos');
