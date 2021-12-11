@@ -1,17 +1,21 @@
 from flask import request, render_template
+from flask_login import current_user, login_required
 from datetime import datetime
 
 from app import app
 
 @app.route('/')
+@login_required
 def index():
     return render_template('camera.html')
 
 @app.route('/client')
+@login_required
 def client():
     return render_template('client.html')
 
 @app.route('/upload', methods=['POST'])
+@login_required
 def upload():
     if request.method == 'POST':
         fs = request.files.get('image')
