@@ -20,6 +20,22 @@ def send_password_reset_email(user):
 															user=user, token=token)
 	)
 
+def send_alert_email(user):
+    send_email(
+        'ALERT - Motion detected!',
+        sender=current_app.config['ADMIN'],
+        recipients=[user.username],
+        text_body=render_template(
+            'email/alert.txt',
+            user=user,
+        ),
+        html_body=render_template(
+            'email/alert.html',
+            user=user,
+        ),
+    )
+
+
 def send_email(subject, sender, recipients, text_body, html_body):
 	"""
 	Send email

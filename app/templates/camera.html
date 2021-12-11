@@ -22,7 +22,12 @@
         <label for="captureVideos" class="form-label">Capture video clips</label>
       </div>
     </div>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <div>
+      <p>Live stream: <span id="status"></span></p>
+    </div>
+    <div>
+      <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    </div>
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
     <script src="static/camera.js"></script>
   </body>

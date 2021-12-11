@@ -1,5 +1,6 @@
 const player = document.getElementById('player');
 const canvas = document.getElementById('canvas');
+const status = document.getElementById('status');
 const context = canvas.getContext('2d');
 const constraints = {
   video: true,
@@ -30,6 +31,9 @@ socket.on('watcher', id => {
       socket.emit('candidate', id, event.candidate);
     }
   };
+  peerConnection.onconnectionstatechange = function(event) {
+      status.innerHTML = peerConnection.connectionState;
+  }
   peerConnection
     .createOffer()
     .then(sdp => peerConnection.setLocalDescription(sdp))

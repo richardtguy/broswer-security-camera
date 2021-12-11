@@ -4,14 +4,13 @@ To serve application using the eventlet web server:
 `python app.py`
 
 ## TODO:
-- Sign up page for new users
 - Separate user connections using rooms
-- Add email alert when motion detected
+- Save media files in separate folders per user
+- Page to view user's own media files
+- Email alert when motion detected (with link and thumbnail)
 - Serve application using production web server
 
-## To set up database
-`flask db init`
-`flask db migrate`
+## To set up database on production server
 `flask db upgrade`
 
 ## To create new user

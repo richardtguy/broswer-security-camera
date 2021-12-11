@@ -1,8 +1,9 @@
-from flask import request, render_template
+from flask import request, render_template, url_for
 from flask_login import current_user, login_required
 from datetime import datetime
 
 from app import app
+from app.email import send_alert_email
 
 @app.route('/')
 @login_required
@@ -22,6 +23,7 @@ def upload():
         if fs:
             filename = f'images/image_{datetime.now().strftime("%Y%m%d-%H%M%S.%f")}.jpg'
             fs.save(filename)
+            send_alert_email(current_user)
             return f'{{"status": "success", "image": "{filename}"}}'
         fs = request.files.get('video')
         if fs:
