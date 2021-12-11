@@ -9,6 +9,7 @@ navigator.mediaDevices.getUserMedia(constraints)
   .then((stream) => {
     // Play stream from webcam on screen
     player.srcObject = stream;
+    // TODO: Initialise WebRTC connection for live view
     // Initialise media recorder
     mediaRecorder = new MediaRecorder(stream, {
       mimeType: 'video/mp4',
