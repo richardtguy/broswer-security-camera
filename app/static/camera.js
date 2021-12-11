@@ -76,6 +76,7 @@ navigator.mediaDevices.getUserMedia(constraints)
       chunks = [];
       let formData = new FormData();
       formData.append('video', blob);
+      formData.append('sendNotifications', sendNotifications.checked);
       fetch('/upload', {
         method: 'POST',
         body: formData
@@ -111,8 +112,14 @@ var [pixelThreshold, globalThreshold] = thresholds(slider.value);
 slider.oninput = function() {
   [pixelThreshold, globalThreshold] = thresholds(this.value)
 }
-var captureImages = document.getElementById('captureImages');
-var captureVideos = document.getElementById('captureVideos');
+const captureImages = document.getElementById('captureImages');
+const captureVideos = document.getElementById('captureVideos');
+const sendNotifications = document.getElementById('sendNotifications');
+updateSendNotifications = () => {
+  sendNotifications.disabled = (captureVideos.checked || captureImages.checked) ? false : true;
+}
+captureImages.onchange = updateSendNotifications
+captureVideos.onchange = updateSendNotifications
 
 function motionDetect(){
   var motion = [];
@@ -180,6 +187,7 @@ function update() {
       canvas.toBlob(function(blob) {
         let formData = new FormData();
         formData.append('image', blob);
+        formData.append('sendNotifications', sendNotifications.checked);
         fetch('/upload', {
           method: 'POST',
           body: formData
